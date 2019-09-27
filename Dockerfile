@@ -1,10 +1,5 @@
-#Start with the miniconda base which uses alpine linxu
-#https://github.com/ContinuumIO/docker-images/blob/master/miniconda3/alpine/Dockerfile
-FROM continuumio/miniconda:3:latest
-
-LABEL maintainer="Sam Hall <sam.dc.hall@gmail.com>"
-
-ENV PATH /opt/conda/envs/venv/bin:${PATH}
+# the base miniconda3 image
+FROM continuumio/miniconda3:latest
 
 # load in the environment.yml file - this file controls what Python packages we install
 ADD environment.yml /
@@ -13,5 +8,7 @@ ADD environment.yml /
 RUN conda update -n base conda -y && conda env update
 
 COPY docker-entrypoint.sh /usr/local/bin/
- 
+
+ADD ./code /code
+
 ENTRYPOINT ["docker-entrypoint.sh"]
