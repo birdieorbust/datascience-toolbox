@@ -1,8 +1,5 @@
 #Start with the miniconda base which uses alpine linxu
 #https://github.com/ContinuumIO/docker-images/blob/master/miniconda3/alpine/Dockerfile
-########################
-#BASE CONDA & PYTHON3
-########################
 FROM continuumio/miniconda:3:latest
 
 LABEL maintainer="Sam Hall <sam.dc.hall@gmail.com>"
