@@ -23,5 +23,7 @@ docker push gcr.io/[project-id]/sh-ds:0.1
 gcloud compute instances create-with-container sh-ds \
      --container-image gcr.io/[project-id]/sh-ds:0.1
 
-
+gcloud compute firewall-rules create allow-http \
+> --target-tags https-server \
+> --allow tcp:8888
 
