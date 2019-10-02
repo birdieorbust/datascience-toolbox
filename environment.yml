@@ -10,3 +10,14 @@ dependencies:
   - scikit-learn
   - pyodbc
   - jupyterlab
+  - psycopg2
+  - requests
+  - google-auth
+  - google-cloud-bigquery
+  - google-cloud-datastore
+  - boto3
+  - flask
+  - dash
+  - ConfigArgParse
+  - beautifulsoup4
+  - bcrypt
