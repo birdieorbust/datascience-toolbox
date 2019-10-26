@@ -6,10 +6,12 @@ dependencies:
   - black
   - flake8
   - pandas
+  - numpy
   - sqlalchemy
   - scikit-learn
   - pyodbc
   - jupyterlab
+  - jupyter
   - psycopg2
   - requests
   - google-auth
@@ -21,3 +23,8 @@ dependencies:
   - ConfigArgParse
   - beautifulsoup4
   - bcrypt
+  - pylint
+  - shap
+  - xgboost
+  - scikit-learn
+  - seaborn
