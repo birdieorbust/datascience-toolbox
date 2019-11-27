@@ -40,5 +40,24 @@ We need to create an instance template that will pull and run the container addi
 
 ```bash
 gcloud compute instances create-with-container sh-ds --container-image gcr.io/[project-id]/datascience-toolbox:0.1
-gcloud compute firewall-rules create allow-http--target-tags https-server --allow tcp:8888
+
+gcloud beta compute instance-templates create-with-container \
+      datascience-toolbox-instance-template              \
+      --container-image=gcr.io/[project-id]/datascience-toolbox:0.1 \
+      ----container-arg
+
+
 ```
+
+
+## Create Kubernetes Cluster
+
+```bash
+
+gcloud conatiner clusters created datascience-toolbox-cluster
+gcloud container clusters get-credentials datascience-toolbox-cluster
+kubectl create deployment datascience-toolbox --image=gcr.io/[project-id]/datascience-toolbox:0.1
+kubectl expose deployment datascience-toolbox --type=LoadBalancer --port 8443
+
+```
+
