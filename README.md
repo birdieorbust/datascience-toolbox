@@ -18,7 +18,7 @@ cd datascience-toolbox
 docker build -t datascience-toolbox:0.1 .
 docker run -p 8888:8888 -p 8443:8443 -v $(pwd)/data:/data -v $(pwd)/code:/code --rm -it datascience-toolbox
 ```
-
+Once running you should be able to hit localhost:8443 and get code-server, localhost:8888 and get Jupyter.
 
 # GCP Setup
 
@@ -27,11 +27,15 @@ docker run -p 8888:8888 -p 8443:8443 -v $(pwd)/data:/data -v $(pwd)/code:/code -
 Once building this file locally you can push to the Google Container Registry. This way we can use the container whenever we need it.
 
 ```bash
-gcloud compute project-info add-metadata \
-    --metadata google-compute-default-region=europe-west1,google-compute-default-zone=europe-west1-b
+gcloud config set compute/zone europe-west2
     
 docker tag datascience-toolbox:0.1 gcr.io/[project-id]/datascience-toolbox:0.1
 docker push gcr.io/[project-id]/datascience-toolbox:0.1
+
+docker login --username=yourhubusername --email=youremail@company.com
+docker push 
+docker push yourhubusername/datascience-toolbox:0.1
+
 ```
 
 ## Create Instance Template
@@ -54,10 +58,12 @@ gcloud beta compute instance-templates create-with-container \
 
 ```bash
 
-gcloud conatiner clusters created datascience-toolbox-cluster
+gcloud container clusters create datascience-toolbox-cluster
 gcloud container clusters get-credentials datascience-toolbox-cluster
 kubectl create deployment datascience-toolbox --image=gcr.io/[project-id]/datascience-toolbox:0.1
-kubectl expose deployment datascience-toolbox --type=LoadBalancer --port 8443
+kubectl expose deployment datascience-toolbox --type=LoadBalancer --port 8443 --port 8888
+
+kubectl get service
 
 ```
 
