@@ -8,7 +8,7 @@ This DockerFile is based on an inital miniconda image and contains the following
 
 The idea is that each pluggable notebook has it's own folder with an install script in which the main DockerFile can run. 
 
-#Testing Locally
+# Testing Locally
 
 This will add the data and code folders from the repository to the container.
 
@@ -20,9 +20,9 @@ docker run -p 8888:8888 -p 8443:8443 -v $(pwd)/data:/data -v $(pwd)/code:/code -
 ```
 
 
-#GCP Setup
+# GCP Setup
 
-##Push to Container Registry
+## Push to Container Registry
 
 Once building this file locally you can push to the Google Container Registry. This way we can use the container whenever we need it.
 
@@ -34,7 +34,7 @@ docker tag datascience-toolbox:0.1 gcr.io/[project-id]/datascience-toolbox:0.1
 docker push gcr.io/[project-id]/datascience-toolbox:0.1
 ```
 
-##Create Instance Template
+## Create Instance Template
 
 We need to create an instance template that will pull and run the container adding the right network settings.
 
